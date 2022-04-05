@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Blur Image background</title>
+			
+								
+								   <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <!-- Load BodyPix -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+
+		<style>
+		
+			body{ 
+					  font-family:Arial,sans-serif;
+							margin:8px;
+			}
+			#fileSelect{
+					height:50vw;
+					width:80vw;
+					font-size:5vw;
+					font-weight:bold;
+					border:dashed 1vw dodgerblue;
+				 color:black;
+				 border-radius:10vw;
+				 padding:12px;				 
+				 background:white;
+					}	
+			
+	  #fileSelect:hover{
+	  				
+	  				background:cyan;
+	  }
+	  
+	 
+			
+			.sec2{
+							
+							display:none;
+			}
+			.sec1box{
+							aspect-ratio:9/16;
+							display:flex;
+							flex-direction:column;
+							justify-content:center;
+							align-items:center;
+							text-align:center;
+							background: white;
+							padding:12px;
+			}
+			
+   #upbox{
+   				
+   				display:none;
+   }
+		
+		
+			
+			.butti{
+							
+						height:80px;
+						width:300px;
+						border-radius:50px;
+						border:none;
+						background: Dodgerblue;
+						color:black;
+						font-weight:bold;
+						font-size:24px;
+						margin:8px;
+					
+						transition: 2000ms ease;
+			}
+			.butti:active{
+							
+						transform:scale(0.9);
+				
+						
+			}
+	 .butti:hover{
+	 		
+	 		color: white; 
+	 		
+	 }
+			.des{
+					
+					font-size:45px;
+					font-weight:bolder;		
+							
+			}
+			.desspan{
+							
+							color:silver;
+			}
+			.desspan2{
+						
+						color:dodgerblue;
+						
+			}
+			
+			#canbox{
+							
+							 aspect-ratio:9/16;
+							 display:flex;
+							 flex-direction: column;
+							 justify-content: center;
+							 align-items:left;
+							 overflow:auto;
+							 background:pink;
+							 padding:8px;
+							 
+			}
+			.outmsg{
+						display:flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items:left;	
+							
+			}
+			.downbutti{
+							
+							display : flex;
+							flex-wrap:wrap;
+							justify-content: space-evenly;
+							align-items:center;
+							overflow: scroll;
+							padding : 4px;
+							border-radius:50px;
+							background:cyan;
+							margin-top:20px;
+			}
+	
+	.errmsg{
+					
+					display:none;
+					border:solid 1px dodgerblue;
+					border-radius:8px;
+					padding:12px;
+					margin:8px;
+	}
+	.spinbox2{
+					
+					display:none;
+	}
+	.spinbox{
+	width:100vw;
+			
+	}
+	.spinbox p{
+	  
+				 position:relative;
+					height:25vw;
+					width:25vw;
+					border-radius:50%;
+						}
+	
+
+	.spinner1{
+	   
+	    background: Dodgerblue;
+					animation:spin 2000ms 0.5s ease alternate 10;		
+	}
+	.spinner2{
+					background: orange;
+					animation:spin 2000ms 0.7s ease alternate 11;
+	}
+	.spinner3{
+					background:green;
+					animation:spin 2000ms 0.8s ease  alternate 12;
+
+	}
+	
+	.spinner4{
+					background:dodgerblue;
+					animation:spin 2000ms 0.9s ease  alternate 13;
+
+	}
+	.spinner5{
+					background: orange;
+					animation:spin 2000ms 1s ease  alternate 14;
+
+	}
+	
+	
+		@keyframes spin		{
+	0%{
+	transform:translateX(0vw) ;}
+100%{transform:translateX(50vw);}
+	}
+
+	
+		</style>		
+</head>
+<body>
+	<!-- This is section first -->
+	
+	<div class="sec1">
+	<div class="sec1box">
+					
+<div>			
+<p class="des">Be in <span class="desspan2">focus,</span>
+<span class="desspan">Blur</span> else!</p>
+</div>
+
+	<div class="filesec">		
+	<div>			
+	<input type="file" id="fileElem" accept="image/*" style="display:none" oninput="shown()">
+</div>
+</div>
+
+<div>		
+<button  id="fileSelect">Upload Image</button>
+</div>
+
+<div id="fileList">
+<div class="filename">		
+<p>No files selected!</p>
+</div>
+</div>
+
+</div>
+<div>
+<div class="introblur">
+<h2 class="des"> Make Any Image <span class="desspan2">background blur</span> automatically</h2>
+<p><p>This image Editor <span class="desspan2"><strong>blur any image background automatically in just few second</strong></span>. </p>
+<p> Its <span class="desspan2" ><strong>free Image Blur Editor</strong></strong></span> and <strong>download Image in HD/original quality</strong> </p>
+</p>
+</div>
+<div><p><small>Created by : Balaji Murumbe</small></p></div>
+</div>
+</div>
+
+<!-- This is section middle -->
+<div>
+<div class="spinbox2">
+<div> 
+<p>
+<p><span class="desspan2">Wait</span> we are doing our magic with logic!</p>
+<p><span class="desspan"><i>This Editor designed by <span class="desspan2">Balaji Murumbe</span></i></span> </p>
+</p>		
+</div>			
+<div class="spinbox">
+<p class="spinner1"></p>
+<p class="spinner2"></p>
+<p class="spinner3"></p>
+<p class="spinner4"></p
+</div>
+
+</div>
+</div>
+<!-- This is section last -->
+<div class="sec2">
+<div>
+				
+<div class="outmsg">
+<div>
+				
+<h2><span class="desspan2">WoW, Congratulations! </span> Your image background successfully <span class="desspan"><strong>Blured</strong></span></h2>
+<div><p class="desspan"><i> Tip : If you don't see image Please Wait for few seconds , we are doing our magic. once You see the image understand this magic is successful.</i></p></div>
+
+<div class="errmsg"><p> Opps ! <span class="desspan2"><b>Error Occurred</b></span>.<span class="desspan"> Your Image height and width is out of Range, please keep it less than 4096×4096.</span></p>
+<button class="butti" onclick="goback()">Go back</button>
+</div>
+
+<div>
+<div id="canbox">
+<canvas id="canvas"></canvas>
+</div>
+</div>
+
+
+</div>
+</div>
+
+<div>
+<div class="downbutti">
+				
+<div><button class="butti" id="downbut" onclick="download_img()">Download</button></div>
+
+<div><button class="butti" onclick="goback()">Back</button></div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+			const fileSelect = document.getElementById("fileSelect"),
+    fileElem = document.getElementById("fileElem"),
+    fileList = document.getElementById("fileList");
+
+fileSelect.addEventListener("click", function (e) {
+  if (fileElem) {
+    fileElem.click();
+  }
+  e.preventDefault(); // prevent navigation to "#"
+}, false);
+
+fileElem.addEventListener("change", handleFiles, false);
+
+function handleFiles() {
+  if (!this.files.length) {
+    fileList.innerHTML = "<p>No files selected!</p>";
+  } else {
+    fileList.innerHTML = "";
+    const list = document.createElement("div");
+    
+    fileList.appendChild(list);
+    for (let i = 0; i < this.files.length; i++) {
+      const li = document.createElement("div");
+      
+      li.setAttribute("id","upbox");
+      list.appendChild(li);
+       
+      const img = document.createElement("img");
+      
+      img.setAttribute("id","img");
+      img.src = URL.createObjectURL(this.files[i]);
+      
+      img.onload = function() {
+        URL.revokeObjectURL(this.src);
+      }
+      li.appendChild(img);
+      const info = document.createElement("p");				           
+      info.innerHTML = this.files[i].name +" <b> | ✓selected </b>";
+      li.appendChild(info);
+      
+    }
+  }
+}	
+
+
+
+
+function shown(){
+setTimeout(jumpsec2,5000);
+let sec1 = document.getElementsByClassName("sec1")[0];
+			sec1.style.display="none";
+			let sec2 = document.getElementsByClassName("spinbox2")[0];
+			sec2.style.display="block";
+			
+		
+		var errormsg = document.getElementsByClassName("errmsg")[0];
+		var fileUpload = document.getElementById("fileElem");
+		var reader = new FileReader();
+
+
+reader.readAsDataURL(fileUpload.files[0]);
+reader.onload = function (e) {
+
+  
+  var image = new Image();
+  
+  image.src = e.target.result;
+
+
+  image.onload = function () {
+    var height = this.height;
+    var width = this.width;
+    if (height < 4096 && width < 4096) {
+     
+      loadAndPredict();
+      
+    }
+    else {
+     
+     errormsg.style.display="block";
+  
+    }
+  };
+};
+				
+}
+
+function jumpsec2(){
+			var spinbox = document.getElementsByClassName("spinbox2")[0];	
+			spinbox.style.display="none";
+			var sec2 = document.getElementsByClassName("sec2")[0];
+   sec2.style.display="block";		
+}
+
+function goback(){
+	  let sec1 = document.getElementsByClassName("sec1")[0];
+			sec1.style.display="block";
+			let sec2 = document.getElementsByClassName("sec2")[0];
+			sec2.style.display="none";		
+	  var errmsg = document.getElementsByClassName("errmsg")[0];
+	  errmsg.style.display= "none";		
+   
+   downbut = document.getElementById("downbut");
+   downbut.innerHTML="Download";
+}
+async function loadAndPredict() {
+     var img = document.getElementById("img");
+      
+      var net = await bodyPix.load();
+      const segmentation = await net.segmentPerson(img);
+      
+      // The mask image is an binary mask image with a 1 where there is a person and
+      // a 0 where there is not.
+       
+
+
+      const flipHorizontal = false;
+      const edgeBlurAmount = 3;
+      const backgroundBlurAmount = 3;
+      const canvas = document.getElementById('canvas');
+      // Draw the mask image on top of the original image onto a canvas.
+      // The colored part image will be drawn semi-transparent, with an opacity of
+      // 0.7, allowing for the original image to be visible under.
+     bodyPix.drawBokehEffect(
+      canvas, img,segmentation,backgroundBlurAmount,edgeBlurAmount,
+      flipHorizontal);
+       
+    return 1;
+    }
+    
+    function download_img(){
+    var downbut = document.getElementById("downbut");
+    downbut.innerHTML = "Wait Downloding...";
+    var canvas = document.getElementById("canvas");
+  image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  var link = document.createElement('a');
+  link.download = "my-image.png";
+  link.href = image;
+  link.click();
+    }
+    /*download_img = function(el) {
+  // get image URI from canvas object
+  var imageURI = canvas.toDataURL("image/jpg");
+  el.href = imageURI;
+};*/
+</script>			
+</body>
+</html>
