@@ -414,14 +414,14 @@ function goback(){
 }
 async function loadAndPredict() {
      var img = document.getElementById("img");
-      
-      var net = await bodyPix.load();
-      const segmentation = await net.segmentPerson(img);
-       
-          var bluramt = document.getElementById("bluramt").value;
+      var bluramt = document.getElementById("bluramt").value;
      console.log(bluramt);
      	var viewrange = document.getElementById("rangeamt"); 
 		viewrange.innerHTML=bluramt;
+      var net = await bodyPix.load();
+      const segmentation = await net.segmentPerson(img);
+       
+          
       
       
       // The mask image is an binary mask image with a 1 where there is a person and
