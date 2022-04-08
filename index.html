@@ -249,10 +249,6 @@
 
 </div>
 </div>
-<div>
-<div><p><small>Created by : Balaji Murumbe </small></p><span><a href="https://www.linkedin.com/in/balaji-murumbe-815126207">See LinkedIn Profile</a></span></div>
-</div>
-</div>
 
 <!-- This is section middle -->
 <div>
@@ -310,6 +306,18 @@
 </div>
 </div>
 
+</div>
+</div>
+<hr>
+<div><div><ul>
+<li>We have some Gifts for you in the form of Discounts, Whenever you purchase goods you get some extra Discounts. <a href="https://amazon.in/shop/todaysq" >shop on amazon</a></li>
+<li>Help us to keep this tool up to date, Make Donation<a href="https://linktr.ee/todaysqmagazine">Donate Now</a></li>
+<li>Learn something special on every week <a href="https://getrevue.co/profile/todaysqmagazine">Subscribe to our weekly Newsletter <a></li>
+</ul></div></div>
+<hr>
+<div>
+<div>
+<p><small>Created by : Balaji Murumbe </small></p><span><a href="https://www.linkedin.com/in/balaji-murumbe-815126207">See LinkedIn Profile</a></span></div>
 </div>
 </div>
 
@@ -428,7 +436,7 @@ async function loadAndPredict() {
       var net = await bodyPix.load();
       const segmentation = await net.segmentPerson(img,{
       internalResolution: 'high',
-      segmentationThreshold:0.7
+      segmentationThreshold:0.8
 });
        
           
@@ -440,7 +448,7 @@ async function loadAndPredict() {
 
 
       const flipHorizontal = false;
-      const edgeBlurAmount = 3;
+      const edgeBlurAmount = 4;
       const backgroundBlurAmount = bluramt;
       const canvas = document.getElementById('canvas');
       // Draw the mask image on top of the original image onto a canvas.
