@@ -423,7 +423,10 @@ async function loadAndPredict() {
      	var viewrange = document.getElementById("rangeamt"); 
 		viewrange.innerHTML=bluramt;
       var net = await bodyPix.load();
-      const segmentation = await net.segmentPerson(img);
+      const segmentation = await net.segmentPerson(img,{
+      internalResolution: 'high',
+      segmentationThreshold:0.7
+});
        
           
       
