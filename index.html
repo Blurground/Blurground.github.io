@@ -313,7 +313,7 @@
 <input type ="range" max="20" min="1" value="7" id="bluramt" onchange="loadAndPredict()">
 <p id="rangeamt"></p>
 </div>
-<div class="errmsg"><p> Opps ! <span class="desspan2"><b>Error Occurred</b></span>.<span class="desspan"> Your Image height and width is out of Range, please keep it less than 4096×4096.</span></p>
+<div class="errmsg"><p> Opps ! <span class="desspan2"><b>Error Occurred</b></span>.<span class="desspan"> Your Image height and width is out of Range, please keep it less than 4096×4096.<i> Tip: Use image Editor to resize your image in ratio like 9:16,1:1 etc.</i><b>Please Try Again</b></span></p>
 <button class="butti" onclick="goback()">Go back</button>
 </div>
 
@@ -466,9 +466,7 @@ async function loadAndPredict() {
      	var viewrange = document.getElementById("rangeamt"); 
 		viewrange.innerHTML=bluramt;
       var net = await bodyPix.load();
-      const segmentation = await net.segmentPerson(img,{
-      internalResolution: 'high'
-});
+      const segmentation = await net.segmentPerson(img);
        
           
       
@@ -479,7 +477,7 @@ async function loadAndPredict() {
 
 
       const flipHorizontal = false;
-      const edgeBlurAmount = 4;
+      const edgeBlurAmount = 3;
       const backgroundBlurAmount = bluramt;
       const canvas = document.getElementById('canvas');
       // Draw the mask image on top of the original image onto a canvas.
